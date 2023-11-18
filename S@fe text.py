@@ -22,6 +22,10 @@ Source_matrix = np.array([["a","b","c","d","e","f","g","h","i"],
                           [":",";","\"","'",",","","","",""],])
 
 
+# set odd & even numbers
+odd = [1,3,5,7,9]
+even = [2,4,6,8]
+
 
 # Welcome message
 print("Welcome to the S@fe text encryptor\nThis program encrypt your message")
@@ -52,7 +56,21 @@ def Main ():
 
 # this function manage all procces about encryptying 
 def Main_encryptor (text):
-    pass
+    
+    # set variables
+    final_text = ""
+
+    # navigation into the raw text
+    for letter in text:
+        
+        # inform letter position
+        letter_position = str(np.where(Source_matrix == letter))
+        letter_position_x = letter_position[8]
+        letter_position_y = letter_position[33]
+
+
+
+
 
 
 # this function manage all procces about decrypting
