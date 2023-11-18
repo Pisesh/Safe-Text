@@ -64,26 +64,25 @@ def Main_p():
 def Main_encryptor (text):
     
     # set variables
-    counter = 0
     temp_text = ""
     final_letter = ""
     letter_1 = 0
     letter_4 = 0
     # navigation into the raw text
     for letter in text:
-        counter = counter + 1
-        # inform letter position
+        
+        # inform letter position (correct)
         letter_position = str(np.where(Source_matrix == letter))
         letter_position_x = int(letter_position[8])
         letter_position_y = int(letter_position[33])
 
-        # set randomize number for crypted letter position(letter5)
+        # set randomize number for crypted letter position(letter5) (correct)
         enc_position_x = rd.randint(0,10)
         enc_position_y = rd.randint(0,8)
         enc_letter = Source_matrix[enc_position_x,enc_position_y]
 
         
-        # gain diffrence beetwen original letter and encrypted letter (indexes)
+        # gain diffrence beetwen original letter and encrypted letter (indexes) (correct)
         # this is for specification changes
         diff_position_x = letter_position_x - enc_position_x
         diff_position_y = letter_position_y - enc_position_y
@@ -97,7 +96,7 @@ def Main_encryptor (text):
         if diff_position_x < 0 :
             letter_1 = rd.choice(odd)
 
-        if diff_position_x < 0 :
+        if diff_position_x > 0 :
             letter_1 = rd.choice(even)
         
         if diff_position_x == 0 :
@@ -107,7 +106,7 @@ def Main_encryptor (text):
         if diff_position_y < 0 :
             letter_4 = rd.choice(odd)
 
-        if diff_position_y < 0 :
+        if diff_position_y > 0 :
             letter_4 = rd.choice(even)
         
         if diff_position_y == 0 :
