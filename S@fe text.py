@@ -49,22 +49,32 @@ def repeat_choice ():
 # this function manage all procces
 def Main_p():
     
-    # insert user values
-    raw_text = catch_values()
+    # set variable for while
+    counter = 0
     
+    # while for choice
+    while counter < 1 :
+
+        # insert user values
+        raw_text = catch_values()
+
+
+        # identify user text want to encrupt or decrypt
+        if raw_text.startswith("ST") and raw_text.endswith("ST"):
+            final_text = Main_decryptor()
+
+
+        else :
+            # call encryptor function
+            final_text = Main_encryptor(raw_text)
+
+            # show final text
+            print(f"\nyour encrypted text is :\n{0}",final_text)
     
-    # identify user text want to encrupt or decrypt
-    if raw_text.startswith("ST") and raw_text.endswith("ST"):
-        final_text = Main_decryptor()
-    
-    
-    else :
-        # call encryptor function
-        final_text = Main_encryptor(raw_text)
-        
-        # show final text
-        print(f"\nyour encrypted text is :\n{0}",final_text)
-        
+        # call choice function
+        choice = repeat_choice()
+        if choice == True :
+            counter = counter + 1        
 
 
 # this function manage all procces about encryptying 
