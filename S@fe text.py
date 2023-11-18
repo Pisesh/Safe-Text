@@ -119,7 +119,8 @@ def Main_encryptor (text):
         # merge all letters together (correct)
         temp_text = temp_text + final_letter
 
-    
+    temp_text = "ST" + temp_text + "ST"
+
     return temp_text
 
 
