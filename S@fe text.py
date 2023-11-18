@@ -65,18 +65,44 @@ def Main_encryptor (text):
         
         # inform letter position
         letter_position = str(np.where(Source_matrix == letter))
-        letter_position_x = letter_position[8]
-        letter_position_y = letter_position[33]
+        letter_position_x = int(letter_position[8])
+        letter_position_y = int(letter_position[33])
 
         # set randomize number for crypted letter position
         enc_position_x = rd.randint(0,10)
         enc_position_y = rd.randint(0,8)
         enc_letter = Source_matrix[x,y]
 
+        
+        # gain diffrence beetwen original letter and encrypted letter (indexes)
+        # this is for specification changes
+        diff_position_x = letter_position_x - enc_position_x
+        diff_position_y = letter_position_y - enc_position_y
+        
+        # this is for final letters
+        diff_position_final_x = int(math.fabs(letter_position_x - enc_position_x))
+        diff_position_final_y = int(math.fabs(letter_position_y - enc_position_y))
 
+        # specification the changes is positive , nagative or not changed in x and y indexes 
+        # this is for x
+        if diff_position_x < 0 :
+            letter_1 = rd.choice(odd)
 
+        if diff_position_x < 0 :
+            letter_1 = rd.choice(even)
+        
+        if diff_position_x == 0 :
+            letter_1 = 0
+        
+        # this is for y
+        if diff_position_y < 0 :
+            letter_4 = rd.choice(odd)
 
-
+        if diff_position_y < 0 :
+            letter_4 = rd.choice(even)
+        
+        if diff_position_y == 0 :
+            letter_4 = 0
 
 
 # this function manage all procces about decrypting
