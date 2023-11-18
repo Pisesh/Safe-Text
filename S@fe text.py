@@ -30,14 +30,21 @@ even = [2,4,6,8]
 # Welcome message
 print("Welcome to the S@fe text encryptor\nThis program encrypt your message")
 
-# call Main function
-
 
 # this function catch raw text from user and return it
 def catch_values ():
     raw_text = input("Enter your message : \t")
     return raw_text
 
+
+# this function premission to user to continu
+def repeat_choice ():
+    prev = input("Do you want to continu?(yes = y / no = n)")
+    if prev.lower() == "y":
+        choice = True
+    else :
+        choice = False
+    return choice
 
 # this function manage all procces
 def Main_p():
@@ -48,7 +55,7 @@ def Main_p():
     
     # identify user text want to encrupt or decrypt
     if raw_text.startswith("ST") and raw_text.endswith("ST"):
-        Main_decryptor()
+        final_text = Main_decryptor()
     
     
     else :
@@ -119,6 +126,7 @@ def Main_encryptor (text):
         # merge all letters together (correct)
         temp_text = temp_text + final_letter
 
+    # add st mark into final text
     temp_text = "ST" + temp_text + "ST"
 
     return temp_text
@@ -128,4 +136,6 @@ def Main_encryptor (text):
 def Main_decryptor ():
     pass
 
+
+# call Main function
 Main_p()
