@@ -50,7 +50,9 @@ def Main ():
     
     
     else :
-        Main_encryptor(raw_text)
+        # call encryptor function
+        final_text = Main_encryptor(raw_text)
+        
         
 
 
@@ -58,8 +60,8 @@ def Main ():
 def Main_encryptor (text):
     
     # set variables
-    final_text = ""
-
+    temp_text = ""
+    final_letter = ""
     # navigation into the raw text
     for letter in text:
         
@@ -68,7 +70,7 @@ def Main_encryptor (text):
         letter_position_x = int(letter_position[8])
         letter_position_y = int(letter_position[33])
 
-        # set randomize number for crypted letter position
+        # set randomize number for crypted letter position(letter5)
         enc_position_x = rd.randint(0,10)
         enc_position_y = rd.randint(0,8)
         enc_letter = Source_matrix[x,y]
@@ -79,12 +81,12 @@ def Main_encryptor (text):
         diff_position_x = letter_position_x - enc_position_x
         diff_position_y = letter_position_y - enc_position_y
         
-        # this is for final letters
+        # this is for final letters (letter 7 , 9)
         diff_position_final_x = int(math.fabs(letter_position_x - enc_position_x))
         diff_position_final_y = int(math.fabs(letter_position_y - enc_position_y))
 
         # specification the changes is positive , nagative or not changed in x and y indexes 
-        # this is for x
+        # this is for x (letter 1)
         if diff_position_x < 0 :
             letter_1 = rd.choice(odd)
 
@@ -94,7 +96,7 @@ def Main_encryptor (text):
         if diff_position_x == 0 :
             letter_1 = 0
         
-        # this is for y
+        # this is for y (letter 4)
         if diff_position_y < 0 :
             letter_4 = rd.choice(odd)
 
@@ -103,6 +105,18 @@ def Main_encryptor (text):
         
         if diff_position_y == 0 :
             letter_4 = 0
+
+        
+        # merge all of the encrypted letter and add 5 random letter to the final letter
+        final_letter = str(rd.randint(0,9)) + str(letter_1) + str(rd.randint(0,9)) 
+        + str(rd.randint(0,9)) + str(letter_4) + str(enc_letter) + str(rd.randint(0,9))
+        + str(diff_position_final_x) + str(rd.randint(0,9)) + str(diff_position_final_y)
+
+        # merge all letters together
+        temp_text = temp_text + final_letter
+
+    
+    return temp_text
 
 
 # this function manage all procces about decrypting
