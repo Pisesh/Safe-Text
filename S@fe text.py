@@ -47,3 +47,8 @@ def Main ():
 def Main_encryptor ():
     pass
 
+
+# this function manage all procces about decrypting
+def Main_decryptor ():
+    pass
+
