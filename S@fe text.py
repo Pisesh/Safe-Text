@@ -6,7 +6,7 @@ import os
 
 
 # Create source matrix
-# 11 row and 9 coulmn
+# 11 row and 9 coulmn (index_x = 0 - 10 , index_y = 0 - 8)
 # Decryptor and encryptor both of them use this matrix
 
 Source_matrix = np.array([["a","b","c","d","e","f","g","h","i"],
@@ -67,6 +67,12 @@ def Main_encryptor (text):
         letter_position = str(np.where(Source_matrix == letter))
         letter_position_x = letter_position[8]
         letter_position_y = letter_position[33]
+
+        # set randomize number for crypted letter position
+        enc_position_x = rd.randint(0,10)
+        enc_position_y = rd.randint(0,8)
+        enc_letter = Source_matrix[x,y]
+
 
 
 
