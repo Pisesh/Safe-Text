@@ -1,6 +1,7 @@
 import numpy as np
 import random as rd
 import datetime as dt
+import math
 import os
 
 
@@ -38,13 +39,19 @@ def Main ():
     # insert user values
     raw_text = catch_values()
     
+    
     # identify user text want to encrupt or decrypt
     if raw_text.startswith("ST") and raw_text.endswith("ST"):
-        pass        
+        Main_decryptor()
+    
+    
+    else :
+        Main_encryptor(raw_text)
+        
 
 
 # this function manage all procces about encryptying 
-def Main_encryptor ():
+def Main_encryptor (text):
     pass
 
 
