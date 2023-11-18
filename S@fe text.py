@@ -92,7 +92,7 @@ def Main_encryptor (text):
         diff_position_final_y = int(math.fabs(letter_position_y - enc_position_y))
 
         # specification the changes is positive , nagative or not changed in x and y indexes 
-        # this is for x (letter 1)
+        # this is for x (letter 1) (correct)
         if diff_position_x < 0 :
             letter_1 = rd.choice(odd)
 
@@ -102,7 +102,7 @@ def Main_encryptor (text):
         if diff_position_x == 0 :
             letter_1 = 0
         
-        # this is for y (letter 4)
+        # this is for y (letter 4) (correct)
         if diff_position_y < 0 :
             letter_4 = rd.choice(odd)
 
@@ -113,10 +113,10 @@ def Main_encryptor (text):
             letter_4 = 0
 
         
-        # merge all of the encrypted letter and add 5 random letter to the final letter
+        # merge all of the encrypted letter and add 5 random letter to the final letter (correct)
         final_letter = str(rd.randint(0,9)) + str(letter_1) + str(rd.randint(0,9)) + str(rd.randint(0,9)) + str(letter_4) + str(enc_letter) + str(rd.randint(0,9)) + str(diff_position_final_x) + str(rd.randint(0,9)) + str(diff_position_final_y)
 
-        # merge all letters together
+        # merge all letters together (correct)
         temp_text = temp_text + final_letter
 
     
