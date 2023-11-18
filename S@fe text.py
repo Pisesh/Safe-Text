@@ -30,6 +30,8 @@ even = [2,4,6,8]
 # Welcome message
 print("Welcome to the S@fe text encryptor\nThis program encrypt your message")
 
+# call Main function
+Main()
 
 # this function catch raw text from user and return it
 def catch_values ():
@@ -53,6 +55,8 @@ def Main ():
         # call encryptor function
         final_text = Main_encryptor(raw_text)
         
+        # show final text
+        print(f"\nyour encrypted text is :/n{0}",final_text)
         
 
 
