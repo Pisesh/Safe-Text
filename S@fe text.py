@@ -20,10 +20,30 @@ Source_matrix = np.array([["a","b","c","d","e","f","g","h","i"],
                           ["+","-","=","<",">","{","}","[","]"],
                           [":",";","\"","'",",","","","",""],])
 
+
+
+# Welcome message
 print("Welcome to the S@fe text encryptor\nThis program encrypt your message")
+
 
 # this function catch raw text from user and return it
 def catch_values ():
     raw_text = input("Enter your message : \t")
     return raw_text
+
+
+# this function manage all procces
+def Main ():
+    
+    # insert user values
+    raw_text = catch_values()
+    
+    # identify user text want to encrupt or decrypt
+    if raw_text.startswith("ST") and raw_text.endswith("ST"):
+        pass        
+
+
+# this function manage all procces about encryptying 
+def Main_encryptor ():
+    pass
 
