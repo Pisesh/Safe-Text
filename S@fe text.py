@@ -62,6 +62,7 @@ def Main_p():
         # identify user text want to encrupt or decrypt
         if raw_text.startswith("ST") and raw_text.endswith("ST"):
             final_text = Main_decryptor(raw_text)
+            print(f"\nyour decrypted text is :\n{final_text}")
 
 
         else :
@@ -90,8 +91,15 @@ def Main_encryptor (text):
         
         # inform letter position (correct)
         letter_position = str(np.where(Source_matrix == letter))
-        letter_position_x = int(letter_position[8])
-        letter_position_y = int(letter_position[33])
+        
+        # add dynamic indexes
+        if letter_position[8].isdecimal() and letter_position[9].isdecimal():
+            letter_position_x = int(letter_position[8:9])
+            letter_position_y = int(letter_position[34])
+
+        else :
+            letter_position_x = int(letter_position[8])
+            letter_position_y = int(letter_position[33])
 
         # set randomize number for crypted letter position(letter5) (correct)
         enc_position_x = rd.randint(0,10)
@@ -148,7 +156,7 @@ def Main_decryptor (input_text):
     # remove St marks
     input_text = input_text[2:-2]
     
-    count = 1
+    count = 0
     final_text = ""
     
     # this variable for temp strings
@@ -188,8 +196,16 @@ def Main_decryptor (input_text):
             # find encrypt letter position in Source_matrix , and insert position into the variables
             encrypted_letter = normal_encrypt_letters[2]
             encrypted_letter_position_raw = str(np.where(Source_matrix == encrypted_letter))
-            encrypted_letter_position_x = int(encrypted_letter_position_raw[8])
-            encrypted_letter_position_y = int(encrypted_letter_position_raw[33])
+            
+            # find dynamic indexes for multiple digits
+            if encrypted_letter_position_raw[8].isdecimal() and encrypted_letter_position_raw[9].isdecimal():
+                
+                encrypted_letter_position_x = int(encrypted_letter_position_raw[8:9])
+                encrypted_letter_position_y = int(encrypted_letter_position_raw[34])
+
+            else :
+                encrypted_letter_position_x = int(encrypted_letter_position_raw[8])
+                encrypted_letter_position_y = int(encrypted_letter_position_raw[33])
 
 
             
@@ -218,7 +234,7 @@ def Main_decryptor (input_text):
                 original_letter_position_y = encrypted_letter_position_y
             
             elif diff_change_y % 2 == 0 :
-                original_letter_position_y = encrypted_letter_position_y + diff_position_x
+                original_letter_position_y = encrypted_letter_position_y + diff_position_y
 
             else :
                 original_letter_position_y = encrypted_letter_position_y - diff_position_y
@@ -230,6 +246,8 @@ def Main_decryptor (input_text):
             
             temp = ""
             count = 0
+        
+    return final_text
 
 
 # call Main function
