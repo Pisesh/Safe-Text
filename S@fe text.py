@@ -61,7 +61,7 @@ def Main_p():
 
         # identify user text want to encrupt or decrypt
         if raw_text.startswith("ST") and raw_text.endswith("ST"):
-            final_text = Main_decryptor()
+            final_text = Main_decryptor(raw_text)
 
 
         else :
@@ -143,8 +143,9 @@ def Main_encryptor (text):
 
 
 # this function manage all procces about decrypting
-def Main_decryptor ():
+def Main_decryptor (input_text):
     pass
+    
 
 
 # call Main function
