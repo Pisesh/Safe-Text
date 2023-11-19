@@ -66,14 +66,14 @@ def Main_p():
 
         else :
             # call encryptor function
-            final_text = Main_encryptor(raw_text)
+            final_text = Main_encryptor(raw_text)  
 
             # show final text
-            print(f"\nyour encrypted text is :\n{0}",final_text)
+            print(f"\nyour encrypted text is :\n{final_text}")
     
         # call choice function
         choice = repeat_choice()
-        if choice == True :
+        if choice == False :
             counter = counter + 1        
 
 
