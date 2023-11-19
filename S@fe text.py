@@ -144,8 +144,92 @@ def Main_encryptor (text):
 
 # this function manage all procces about decrypting
 def Main_decryptor (input_text):
-    pass
     
+    # remove St marks
+    input_text = input_text[2:-2]
+    
+    count = 1
+    final_text = ""
+    
+    # this variable for temp strings
+    temp = ""
+    
+    for letter in input_text:
+        
+        # add encrypted letter into the temp
+        temp = temp + letter
+        count = count + 1
+        
+        # split 10 encrypted letter
+        if count == 10 :
+            
+            # split encrypted letters from random letters 
+            # random indexes : 0 , 2 , 3 , 6 , 8
+            # true indexes : 1 , 4 , 5 , 7 , 9
+            
+            normal_encrypt_letters = temp[1] + temp[4] + temp[5] + temp[7] + temp[9]
+
+            # explain indexes : 
+            # 1 = diffrence change row is positive or negative 
+            # 4 = diffrence change coulmn is positive or negative 
+            # 5 = encrypted character
+            # 7 = diffrence value for row
+            # 9 = diffrence value for coulmn
+
+            # diffrence change is positive or negative
+            # for x
+            diff_change_x = int(normal_encrypt_letters[0])
+
+            # for y
+            diff_change_y = int(normal_encrypt_letters[1])
+
+            
+            # find encrypte letter from text
+            # find encrypt letter position in Source_matrix , and insert position into the variables
+            encrypted_letter = normal_encrypt_letters[2]
+            encrypted_letter_position_raw = str(np.where(Source_matrix == encrypted_letter))
+            encrypted_letter_position_x = int(encrypted_letter_position_raw[8])
+            encrypted_letter_position_y = int(encrypted_letter_position_raw[33])
+
+
+            
+            # diffrence position values
+            # for x
+            diff_position_x = int(normal_encrypt_letters[3])
+
+            # for y
+            diff_position_y = int(normal_encrypt_letters[4])
+
+            
+            # identify position is positive or negative
+            # for x
+            if diff_change_x == 0 :
+                original_letter_position_x = encrypted_letter_position_x
+            
+            elif diff_change_x % 2 == 0 :
+                original_letter_position_x = encrypted_letter_position_x + diff_position_x
+
+            else :
+                original_letter_position_x = encrypted_letter_position_x - diff_position_x
+
+
+            # for y
+            if diff_change_y == 0 :
+                original_letter_position_y = encrypted_letter_position_y
+            
+            elif diff_change_y % 2 == 0 :
+                original_letter_position_y = encrypted_letter_position_y + diff_position_x
+
+            else :
+                original_letter_position_y = encrypted_letter_position_y - diff_position_y
+
+            # find original character
+            original_letter = Source_matrix[original_letter_position_x , original_letter_position_y]
+
+            final_text = final_text + original_letter
+            
+            temp = ""
+            count = 0
 
 
 # call Main function
