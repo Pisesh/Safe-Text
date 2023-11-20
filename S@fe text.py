@@ -119,7 +119,7 @@ def Main_encryptor (text):
         # specification the changes is positive , nagative or not changed in x and y indexes 
         # this is for x (letter 1) (correct)
         if diff_position_x < 0 :
-            letter_1 = rd.choice(odd)
+            letter_1 = rd.choice(odd) 
 
         if diff_position_x > 0 :
             letter_1 = rd.choice(even)
