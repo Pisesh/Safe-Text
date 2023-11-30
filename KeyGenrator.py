@@ -2,7 +2,7 @@ import random as rd
 
 
 class Key ():
-    def __init__ ():
+    def __init__ (self):
         self.__publicKey = 0
         self.__privateKey = 0
 
