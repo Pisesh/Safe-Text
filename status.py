@@ -6,13 +6,13 @@ class Account ():
     def __init__(self):
         
         # definitation login is true or false
-        self._isLogin = False
+        self.__isLogin = False
         
 
 
     # check user is login or no
     def LoginStatus(self):
-        return self._isLogin
+        return self.__isLogin
     
     # create account for user
     def CreateAccount(self,username,password):
@@ -46,13 +46,24 @@ class Account ():
             extractList = row
 
         # extract usrname and password from csv list
-        realUsername = extractList[0]
-        realPassword = extractList[2]
+        self.__realUsername = extractList[0]
+        self.__realPassword = extractList[2]
 
         # put parameters into variable
-        parameterUsename = username
-        parameterPassword = password
+        self.parameterUsename = username
+        self.parameterPassword = password
 
+        return AccountValidation()
+
+    def AccountValidation (self):        
         
+        # check user name and password
+        if self.__realUsername == self.parameterUsename:
+        
+            if self.__realPassword == self.parameterPassword:
+                return True
+
+        else:
+            return False
 
 
