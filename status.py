@@ -53,6 +53,8 @@ class Account ():
         self.parameterUsename = username
         self.parameterPassword = password
 
+        # set login true
+        self.__isLogin = True
         return AccountValidation()
 
     def AccountValidation (self):        

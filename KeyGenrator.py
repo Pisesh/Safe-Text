@@ -8,4 +8,4 @@ class Key ():
 
     def CreatePublicKey (self):
         self.__publicKey = rd.randint(100000000000,999999999999)
-        return __publicKey
+        return self.__publicKey
