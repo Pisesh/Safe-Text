@@ -15,9 +15,9 @@ class Account ():
         return self._isLogin
     
     # create account for user
-    def CreateAccount(self,name,password):
+    def CreateAccount(self,username,password):
 
-        self.name = name
+        self.username = username
         self.__password = password
 
         # create object from key class
@@ -26,7 +26,33 @@ class Account ():
         # call CreatePublickey from Key class
         self.__publicKey = publicKey.CreatePublicKey()
 
-        with open ('accounts.csv',mode='w') as acc :
-            account_writer = csv.writer(acc)
+        self.SaveAccount()
+
+     # save account   
+    def SaveAccount(self):    
+    
+        with open ('accounts.csv',mode='w') as account_file :
+            account_writer = csv.writer(account_file)
             
-            account_writer.writerow([self.name,self.__publicKey,self.__password])
+            account_writer.writerow([self.username,self.__publicKey,self.__password])
+    
+    def LoginAccount(self,username,password):
+        
+        # import csv file
+        account_file = csv.reader(open='accounts.csv')
+
+        # extract csv row
+        for row in account_file:
+            extractList = row
+
+        # extract usrname and password from csv list
+        realUsername = extractList[0]
+        realPassword = extractList[2]
+
+        # put parameters into variable
+        parameterUsename = username
+        parameterPassword = password
+
+        
+
+
