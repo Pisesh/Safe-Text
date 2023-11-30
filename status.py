@@ -12,6 +12,7 @@ class Account ():
     def LoginStatus(self):
         return self.__isLogin
     
+    
     # create account for user
     def CreateAccount(self,username,password):
 
@@ -38,33 +39,44 @@ class Account ():
     
     def LoginAccount(self,username,password):
 
+        counter = 0
+
         with open('accounts.csv', 'r') as file:
             account_file = csv.reader(file)
 
             # extract csv row
             for row in account_file:
-                extractList = row
+                if counter == 0:
+                    extractList = row
+                counter += 1
+
 
         # extract usrname and password from csv list
         self.__realUsername = extractList[0]
         self.__realPassword = extractList[2]
         
         # put parameters into variable
-        self.parameterUsename = username
+        self.parameterUsername = username
         self.parameterPassword = password
        
-        # set login true
-        self.__isLogin = True
-        return self.AccountValidation()
+        validation = self.AccountValidation()
+
+        if validation == True:
+            self.__isLogin = True
+            return True
+        
 
     def AccountValidation (self):        
         
         # check user name and password
-        if self.__realUsername == self.parameterUsename:
+        if self.__realUsername == self.parameterUsername:
         
             if self.__realPassword == self.parameterPassword:
                 return True
 
+            else:
+                return False
+        
         else:
             return False
 
