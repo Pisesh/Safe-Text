@@ -8,8 +8,6 @@ class Account ():
         # definitation login is true or false
         self.__isLogin = False
         
-
-
     # check user is login or no
     def LoginStatus(self):
         return self.__isLogin
@@ -26,7 +24,8 @@ class Account ():
         # call CreatePublickey from Key class
         self.__publicKey = publicKey.CreatePublicKey()
 
-        self.SaveAccount()
+        return self.SaveAccount()
+
 
      # save account   
     def SaveAccount(self):    
@@ -35,6 +34,7 @@ class Account ():
             account_writer = csv.writer(account_file)
             
             account_writer.writerow([self.username,self.__publicKey,self.__password])
+            return True
     
     def LoginAccount(self,username,password):
         
