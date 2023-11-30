@@ -37,25 +37,25 @@ class Account ():
             return True
     
     def LoginAccount(self,username,password):
-        
-        # import csv file
-        account_file = csv.reader(open='accounts.csv')
 
-        # extract csv row
-        for row in account_file:
-            extractList = row
+        with open('accounts.csv', 'r') as file:
+            account_file = csv.reader(file)
+
+            # extract csv row
+            for row in account_file:
+                extractList = row
 
         # extract usrname and password from csv list
         self.__realUsername = extractList[0]
         self.__realPassword = extractList[2]
-
+        
         # put parameters into variable
         self.parameterUsename = username
         self.parameterPassword = password
-
+       
         # set login true
         self.__isLogin = True
-        return AccountValidation()
+        return self.AccountValidation()
 
     def AccountValidation (self):        
         
