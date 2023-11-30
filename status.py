@@ -31,6 +31,7 @@ class Account ():
      # save account   
     def SaveAccount(self):    
     
+        # write csv
         with open ('accounts.csv',mode='w') as account_file :
             account_writer = csv.writer(account_file)
             
@@ -58,9 +59,11 @@ class Account ():
         # put parameters into variable
         self.parameterUsername = username
         self.parameterPassword = password
-       
+
+        # call validation
         validation = self.AccountValidation()
 
+        # change islogin to True
         if validation == True:
             self.__isLogin = True
             return True
