@@ -128,15 +128,26 @@ class Cryptography ():
 
         lenPrivateKey = len(private_key)
         lenMessage = len(message)
+        rdInt = rd.randint(0,9)
         finalText = ""
 
+        # create encrypted len key
+        encLenKey = lenPrivateKey * rdInt
+
         finalText = self.EncryptPrivateKey(private_key)
+
+        # create sprator character position
+        sprator_x = rd.randint(0,9)
+        sprator_y = rd.randint(0,4)
+
+        # create sprator character
+        sprator = self.CharacterFinder(sprator_x, sprator_y)
                 
         # loop in message by letters
         for letter in message :
             finalText = finalText + self.Encryptor(letter)
         
-        return finalText
+        return str(encLenKey) + sprator + finalText + str(rdInt)
 
 
     # -----------------------------------------------------------
