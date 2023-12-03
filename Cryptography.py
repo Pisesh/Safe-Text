@@ -184,49 +184,68 @@ class Cryptography ():
 
         return originCharacter[0]
 
+    def KeyLenFinder(self, message):
 
-    def MainDecryptor(self,encryptedText,privateKey):
+        inputMessage = message
+        coefficient = ""
+        keyLen = ""
 
-        # find key len
-        lenKey = int(len(privateKey))
-        lenKey = lenKey * 3
+        for letter in inputMessage:
+            if letter.isdecimal() == True:
+                
+                # storage real len key
+                keyLen = keyLen + letter
+                # delete len key from input message
+                inputMessage = inputMessage[1:]
+
+            else:
+                break
         
-        lenCounter = 0
+        # reverse input message to find coefficient
+        reverseMessage = inputMessage[::-1]
+
+        # find coefficient
+        for letter in reverseMessage:
+            if letter.isdecimal() == True:
+                
+                # storage real len key
+                coefficient = coefficient + letter
+                # delete len key from input message
+                reverseMessage = reverseMessage[1:]
+
+            else:
+                break
+
+        # reverse coefficient to find origin
+        coefficient = coefficient[::-1]
+        inputMessage = reverseMessage[::-1]
+
+        if keyLen == "" or coefficient == "":
+            return "",""
+        
+        inputMessage = inputMessage[1:-1]
+
+        originLenKey = int(int(keyLen) / int(coefficient))
+
+        return inputMessage, originLenKey
+    
+    def LenKeyManager(self, message, inputkey):
+
+        # call Key len finder
+        filteredMessage, originLenKey = self.KeyLenFinder(message)
+
+        if originLenKey == len(inputkey) :
+            return True, filteredMessage, originLenKey
+        else:
+            return False, "", 0
+
+    def DecryptorLoop(self,message):
+
         counter = 0
         phrase = ""
         finalText = ""
-        originalKey = ""
 
-        if len(privateKey) > (len(encryptedText)-3) :
-            return False
-
-        # extract original key from text            
-        for letter in encryptedText:
-
-            if lenCounter == lenKey:  
-                
-                break
-            
-            # put encrypted letter into phrase
-            phrase = phrase + letter
-            lenCounter = lenCounter + 1
-            counter = counter + 1
-            
-            if counter == 3:
-            
-                # call Decryptor 
-                originalKey = originalKey + self.Decryptor(phrase)
-
-                # clear key from text
-                encryptedText = encryptedText[3:]
-
-                # clear variable
-                phrase = ""
-                counter = 0
-        
-        if originalKey == privateKey :
-            
-            for letter in encryptedText:
+        for letter in message:
             
                 # put encrypted letter into phrase
                 phrase = phrase + letter
@@ -241,7 +260,44 @@ class Cryptography ():
                     phrase = ""
                     counter = 0
         
-            return finalText
+        return finalText
+
+    # check input key is correct or no
+    def KeyChecker(self,encryptedText,privateKey,originLenKey):
+        
+        originKey = ""
+
+        originLenKey = originLenKey * 3
+        encKey = encryptedText[:originLenKey]
+        encMessage = encryptedText[originLenKey:]
+
+        originLenKey = self.DecryptorLoop(encKey)
+
+        if privateKey == privateKey:
+            return True, encMessage
+        else:
+            return False, ""
+        
+
+    def MainDecryptor(self, encryptedText, privateKey):
+
+        lenValidatin = False
+        KeyValidatin = False
+        lenKey = 0
+        finalText = ""
+
+        lenValidatin, filteredMessage, lenKey= self.LenKeyManager(encryptedText, privateKey)
+
+        if lenValidatin == True:
+            KeyValidatin, filteredMessage = self.KeyChecker(filteredMessage, privateKey, lenKey)
+
+            if KeyValidatin == True:
+                finalText = self.DecryptorLoop(filteredMessage)
+        
+                return finalText
+
+            else:
+                return False
         
         else:
             return False
