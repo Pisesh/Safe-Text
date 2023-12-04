@@ -8,6 +8,7 @@ class MainApplication(tk.Tk):
 
         self.title("S@fe Text")
         self.geometry("270x610")
+        self.resizable(False,False)
 
         self.frames = {
             "Frame1": Frame1,
@@ -60,8 +61,11 @@ class Frame1(tk.Frame):
         enteredMessage = self.inputText.get("1.0", tk.END)
         enteredKey = self.inputKey.get("1.0", tk.END)
         
-        enteredMessage =enteredMessage[0:-1]
-        enteredKey =enteredKey[0:-1]
+        while enteredMessage.endswith("\n"):   
+            enteredMessage =enteredMessage[:-1]
+        
+        while enteredKey.endswith("\n"):
+            enteredKey =enteredKey[0:-1]
 
         temp = Main.Encryptor(enteredMessage,enteredKey)
         
@@ -103,8 +107,11 @@ class Frame2(tk.Frame):
         enteredMessage = self.inputText.get("1.0", tk.END)
         enteredKey = self.inputKey.get("1.0", tk.END)
         
-        enteredMessage =enteredMessage[0:-1]
-        enteredKey =enteredKey[0:-1]
+        while enteredMessage.endswith("\n"):   
+            enteredMessage =enteredMessage[:-1]
+        
+        while enteredKey.endswith("\n"):
+            enteredKey =enteredKey[0:-1]
 
         temp = Main.Decryptor(enteredMessage,enteredKey)
         
