@@ -1,54 +1,24 @@
 # import modules
+import AccountManager as am
+import CryptographyManager as cm
 from status import *
 import Cryptography as cg
 
-# create object from Account class
-userAccount = Account()
-
 # Create an account from Account class
 def CreateAccount (name,password):
-    
-    # filter Null values
-    if name == "" or password == "":
-        return 1
-    
-    else :
-        return userAccount.CreateAccount(name,password)
+    return am.CreateAccount(name,password)
 
 # Login into an account from Account class
 def LoginAccount (name,password):
-
-    # filter Null values
-    if name == "" or password == "" :
-        return 1
-    
-    else :
-        return userAccount.LoginAccount(name,password)
+    return am.LoginAccount(name,password)
 
 # check login is True or False
 def CheckStatus ():
-    return userAccount.LoginStatus()
+    return am.CheckStatus()
 
 def Encryptor (text,key):
-    #if userAccount.LoginStatus() == True:
-        if text != "" and key != "":
-            encrypt = cg.Cryptography()
-            return encrypt.MainEncryptor(text,key)
-        
-        else:
-            return None
-    
-    #else:
-        #return None
+    return cm.Encryptor(text, key)
 
 def Decryptor (text,key):
     #if userAccount.LoginStatus == True:
-        if text != "" and key != "":
-            decrypt = cg.Cryptography()
-            return decrypt.MainDecryptor(text,key)
-    
-        else:
-            return None
-            
-    #else:
-        #return None
+    return cm.Decryptor(text, key)
