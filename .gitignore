@@ -3,3 +3,5 @@ test.py
 accounts.csv
 __pycache__
 Report_log.txt
+gui.spec
+MyCode.spec
