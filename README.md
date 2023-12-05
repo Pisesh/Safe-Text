@@ -5,6 +5,8 @@ Encrypt and decrypt your message with self made algorithm
 you can encrypt your message by set custome password but only but only those who have access to the password can decrypt and see your message.
 
 ## How can i use this?
+Run Safe-Text.exe
+
 for encryption message:
 1. Enter your message 
 2. Set password for message
